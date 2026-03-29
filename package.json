@@ -1,0 +1,31 @@
+{
+  "name": "job-scraper-service",
+  "version": "1.0.0",
+  "description": "Job Scraper Microservice for Portafolio",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@types/mongoose": "^5.11.96",
+    "axios": "^1.6.8",
+    "cheerio": "^1.0.0-rc.12",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^9.3.3",
+    "node-cron": "^3.0.3",
+    "playwright": "^1.42.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.11.30",
+    "@types/node-cron": "^3.0.11",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.3"
+  }
+}
