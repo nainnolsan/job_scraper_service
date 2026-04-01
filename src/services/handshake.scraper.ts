@@ -49,7 +49,7 @@ export async function scrapeHandshakeJobs(searchParams: SearchParams) {
                      await Job.findOneAndUpdate(
                          { link: jobData.link },
                          { $set: jobData },
-                         { upsert: true, new: true }
+                         { upsert: true, returnDocument: 'after' }
                      );
                  }
              } catch (err) {
