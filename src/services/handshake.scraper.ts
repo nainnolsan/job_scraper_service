@@ -15,10 +15,20 @@ export async function scrapeHandshakeJobs(searchParams: SearchParams) {
     const jobsFound = [];
 
     try {
-        // IMPORTANT: Handshake requires an authenticated student session.
-        // You MUST inject your SSO cookies here for this scraper to navigate successfully in production.
-        // Example:
-        // await context.addCookies([{ name: '_handshake_session', value: 'YOUR_COOKIE', domain: '.joinhandshake.com', path: '/' }]);
+        const handshakeCookieValue = process.env.HANDSHAKE_SESSION_COOKIE;
+        
+        if (!handshakeCookieValue) {
+            console.error('[Handshake Scraper] AVISO: No se pueden buscar empleos en Handshake porque la variable HANDSHAKE_SESSION_COOKIE no está configurada.');
+            return []; // Cancelamos la búsqueda en vez de romper la app
+        }
+
+        // Inyectamos la cookie automáticamente
+        await context.addCookies([{ 
+            name: '_handshake_session', 
+            value: handshakeCookieValue, 
+            domain: '.joinhandshake.com', 
+            path: '/' 
+        }]);
 
         const url = `https://app.joinhandshake.com/stu/postings?query=${encodeURIComponent(searchParams.keywords)}`;
         await page.goto(url, { waitUntil: 'domcontentloaded' });
