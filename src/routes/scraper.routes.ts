@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express';
 import { scrapeLinkedInJobs } from '../services/linkedin.scraper';
 import { scrapeHandshakeJobs } from '../services/handshake.scraper';
-import { Job } from '../models/Job';
+import Job from '../models/Job';
 
 const router = Router();
 
